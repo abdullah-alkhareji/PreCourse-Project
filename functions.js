@@ -18,10 +18,12 @@
  * sumOdds([1, 2, 3, 4, 5, 6, 7, 8, 9]) -> 25
  * sumOdds([3, 7, 8, 15, 2, 1, 13]) -> 39
  */
-function sumOdds(numbers) {
-  // Your code here
-}
-// console.log(sumOdds([3, 7, 8, 15, 2, 1, 13]));
+const sumOdds = numbers =>
+	numbers
+		.filter(number => number % 2 === 1)
+		.reduce((prev, curr) => prev + curr);
+
+console.log(sumOdds([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]));
 
 /**
  * characterCount(string, c):
@@ -36,10 +38,13 @@ function sumOdds(numbers) {
  * Hint: You need to turn the string into an array first
  * Another Hint: Use string methods to make it case-insensitive
  */
-function characterCount(string, c) {
-  // Your code here
-}
-// console.log(characterCount("Character Count is clever", "c"));
+const characterCount = (string, c) =>
+	string
+		.toLowerCase()
+		.split("")
+		.filter(char => char === c.toLowerCase()).length;
+
+console.log(characterCount("aAaebc", "A"));
 
 /**
  * largestIncrement(numbers):
@@ -57,10 +62,16 @@ function characterCount(string, c) {
  *
  * largestIncrement([11, 35, 52, 14, 56, 601, 777, 888, 999]) -> 545
  */
-function largestIncrement(numbers) {
-  // Your code here
-}
-// console.log(largestIncrement([11, 35, 52, 14, 56, 601, 777, 888, 999]));
+const largestIncrement = numbers => {
+	return numbers
+		.slice(1)
+		.map((n, i) => n - numbers[i])
+		.sort((acc, cur) => cur - acc)
+		.slice(0, 1)
+		.toString();
+};
+
+console.log(largestIncrement([1, 3, 7, 9, 19]));
 
 /**
  * afterX(numbers, x):
@@ -73,10 +84,9 @@ function largestIncrement(numbers) {
  * afterX([1, 2, 3, 4, 5, 6, 7, 8, 9], 3) -> [4, 5, 6, 7, 8, 9]
  * afterX([11, 35, 52, 14, 56, 601, 777, 888, 999], 52) -> [14, 56, 601, 777, 888, 999]
  */
-function afterX(numbers, x) {
-  // Your code here
-}
-// console.log(afterX([1, 2, 3, 4, 5, 6, 7, 8, 9], 3));
+const afterX = (numbers, x) => numbers.slice(numbers.indexOf(x) + 1);
+
+console.log(afterX([1, 2, 3, 7, 8, 9, 19], 3));
 
 /**
  * abbreviate(firstName, lastName):
@@ -89,10 +99,15 @@ function afterX(numbers, x) {
  *
  * Hint: Use string method .toUpperCase()
  */
-function abbreviate(firstName, lastName) {
-  // Your code here
-}
-// console.log(abbreviate("miss", "Stephane"));
+const abbreviate = (firstName, lastName) => {
+	// Your code here
+	const init = "";
+	return init.concat(
+		firstName.toUpperCase().slice(0, 1),
+		lastName.toUpperCase().slice(0, 1)
+	);
+};
+console.log(abbreviate("mickey", "singer"));
 
 /**
  * isUpperCase(string):
@@ -104,11 +119,9 @@ function abbreviate(firstName, lastName) {
  * isUpperCase("JCREW") -> true
  *
  */
-function isUpperCase(string) {
-  // Your code here
-}
+const isUpperCase = string => (string == string.toUpperCase() ? true : false);
 
-// console.log(isUpperCase("JCREW"));
+console.log(isUpperCase("MICKEY"));
 
 /**
  * elementInArray(numbers, x):
@@ -120,17 +133,16 @@ function isUpperCase(string) {
  * elementInArray([5, 6, 7], 8) -> false
  *
  */
-function elementInArray(numbers, x) {
-  // Your code here
-}
-// console.log(elementInArray([5, 6, 7], 8));
+const elementInArray = (numbers, x) => numbers.some(number => number === x);
+
+console.log(elementInArray([1, 2, 3, 4, 5], 8));
 
 module.exports = {
-  sumOdds,
-  characterCount,
-  largestIncrement,
-  afterX,
-  abbreviate,
-  isUpperCase,
-  elementInArray,
+	sumOdds,
+	characterCount,
+	largestIncrement,
+	afterX,
+	abbreviate,
+	isUpperCase,
+	elementInArray,
 };
